@@ -71,8 +71,7 @@
     $("tiles").innerHTML =
       '<div class="tile p">납품 완료<b>' + doneN + " / " + list.length + " 건</b></div>" +
       '<div class="tile">사용 환자<b>' + pats + " 명</b></div>" +
-      '<div class="tile">사용분 수량<b>' + q + " 개</b></div>" +
-      '<div class="tile m">병원 금액 (VAT 포함)<b>' + won(hp) + " 원</b></div>";
+      '<div class="tile m">사용분 수량<b>' + q + " 개</b></div>";
 
     var cl = state.closings[cur];
     var badge = $("closeBadge"), btn = $("btnClose"), note = $("closeNote");
@@ -107,7 +106,7 @@
       var card = document.createElement("div");
       card.className = "card";
       card.innerHTML =
-        '<div class="dl"><div class="dtitle">' + dl.date.slice(5).replace("-", "/") + ' 납품 <span class="note">담당 ' + C.owner + '</span></div>' +
+        '<div class="dl"><div class="dtitle">' + (dl.title || (dl.date.slice(5).replace("-", "/") + " 납품")) + ' <span class="note">담당 ' + C.owner + '</span></div>' +
         '<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="badge ' + (done ? "done" : "pending") + '">' + (done ? "납품 완료" : "납품 대기") + "</span>" +
         (done ? '<span class="note">' + (st.at || "") + " " + (st.by || "") + "</span>" : "") +
         (!dl.fixed ? (done ? '<button class="b-soft noprint" data-undo="' + dl.id + '" style="padding:7px 12px">완료 취소</button>'
@@ -131,19 +130,18 @@
     var rows = monthRows(ym), t1 = "", s = { q: 0, bj: 0, hp: 0 };
     rows.forEach(function (r, i) {
       s.q += r.qty; s.bj += r.pr.bj * r.qty; s.hp += r.pr.hp * r.qty;
-      t1 += "<tr><td>" + (i + 1) + "</td><td>" + r.date + "</td><td>" + r.pr.ins + "</td><td>" + r.pr.name + "</td><td>" + r.pr.spec + "</td><td>" + r.qty +
-        "</td><td>" + won(r.pr.bj) + "</td><td>" + won(r.pr.bj * r.qty) + "</td><td>" + won(r.pr.hp) + "</td><td>" + won(r.pr.hp * r.qty) + "</td><td>" + r.name + "</td><td>" + r.chart + "</td></tr>";
+      t1 += "<tr><td>" + (i + 1) + "</td><td>" + r.date + "</td><td>" + r.pr.ins + "</td><td>" + r.pr.name + "</td><td>" + r.pr.spec + "</td><td>" + r.qty + "</td><td>" + r.name + "</td><td>" + r.chart + "</td></tr>";
     });
     var h1 = "<h3>" + ym.slice(0, 4) + "년 " + (+ym.slice(5, 7)) + "월 " + C.bj.name + " 납품내역 (청담리온정형외과)</h3>" +
-      "<table border='1'><thead><tr><th>NO</th><th>수술일</th><th>보험코드</th><th>품명</th><th>규격</th><th>수량</th><th>단가(BJ)</th><th>합계</th><th>병원단가</th><th>합계</th><th>환자정보</th><th>PID</th></tr></thead><tbody>" + t1 +
-      "</tbody><tfoot><tr><td colspan='5'>합계</td><td>" + s.q + "</td><td></td><td>" + won(s.bj) + "</td><td></td><td>" + won(s.hp) + "</td><td colspan='2'></td></tr></tfoot></table>";
+      "<table border='1'><thead><tr><th>NO</th><th>수술일</th><th>보험코드</th><th>품명</th><th>규격</th><th>수량</th><th>환자정보</th><th>PID</th></tr></thead><tbody>" + t1 +
+      "</tbody><tfoot><tr><td colspan='5'>합계</td><td>" + s.q + "</td><td colspan='2'></td></tr></tfoot></table>";
     var agg = {}, order = [];
     rows.forEach(function (r) { var k = r.pr.name + "|" + r.pr.spec; if (!agg[k]) { agg[k] = { pr: r.pr, q: 0 }; order.push(k); } agg[k].q += r.qty; });
-    var t2 = "", tot = 0;
-    order.forEach(function (k, i) { var a = agg[k]; tot += a.pr.bj * a.q; t2 += "<tr><td>" + (i + 1) + "</td><td>" + a.pr.name + "</td><td>" + a.pr.spec + "</td><td>EA</td><td>" + a.q + "</td><td>" + won(a.pr.bj) + "</td><td>" + won(a.pr.bj * a.q) + "</td></tr>"; });
+    var t2 = "", tot = 0, tq = 0;
+    order.forEach(function (k, i) { var a = agg[k]; tot += a.pr.bj * a.q; t2 += "<tr><td>" + (i + 1) + "</td><td>" + a.pr.name + "</td><td>" + a.pr.spec + "</td><td>EA</td><td>" + a.q + "</td></tr>"; tq += a.q; });
     var h2 = "<h3>거래명세서 · " + C.supplier + " → " + C.bj.name + "</h3><div class='note'>일자 " + monthEnd(ym) + " · 청담리온정형외과 " + (+ym.slice(5, 7)) + "월 마감 · 담당자 " + C.owner + " / " + C.ownerTel + "</div>" +
-      "<table border='1'><thead><tr><th>No</th><th>품명</th><th>규격</th><th>단위</th><th>수량</th><th>단가(VAT 포함)</th><th>금액</th></tr></thead><tbody>" + t2 +
-      "</tbody><tfoot><tr><td colspan='6'>합계 (VAT 포함)</td><td>" + won(tot) + "</td></tr></tfoot></table>";
+      "<table border='1'><thead><tr><th>No</th><th>품명</th><th>규격</th><th>단위</th><th>수량</th></tr></thead><tbody>" + t2 +
+      "</tbody><tfoot><tr><td colspan='4'>합계</td><td>" + tq + "</td></tr></tfoot></table><div class='note' style='margin-top:6px'>금액은 수멕스가 비엔제이홀딩스로 보내는 정식 마감 서류에만 들어가요.</div>";
     return { h1: h1, h2: h2 };
   }
   function renderDocs() {

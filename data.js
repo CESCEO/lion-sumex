@@ -9,18 +9,30 @@ window.CONFIG = {
 
 // 병원 거래명세서 품명/규격 그대로, 단가는 VAT 포함
 window.PRODUCTS = {
-  C65:   { ins: "D1213031", name: "DRI-LOK Threaded Cannula", spec: "6.5mm", ec: "3910075650", hp: 45440,  bj: 43160 },
-  C80:   { ins: "D1213031", name: "DRI-LOK Threaded Cannula", spec: "8.0mm", ec: "3910075800", hp: 45440,  bj: 43160 },
-  SP:    { ins: "D0303031", name: "ICONIX ANCHOR Speed", spec: "2.3mm", ec: "3910500931", hp: 205340, bj: 195070 },
-  S3:    { ins: "D0303031", name: "ICONIX ANCHOR 3 Strands", spec: "2.3mm", ec: "3910500532", hp: 205340, bj: 195070 },
-  S2:    { ins: "D0303031", name: "ICONIX ANCHOR 2 Strands", spec: "2.3mm", ec: "3910500522", hp: 205340, bj: 195070 },
-  S1:    { ins: "D0303031", name: "ICONIX ANCHOR 1 Strands", spec: "1.4mm", ec: "3910500512", hp: 205340, bj: 195070 },
-  TT:    { ins: "D0303031", name: "ICONIX ANCHOR 1 TT (XBraid TT)", spec: "1.4mm", ec: "3910500312", hp: 205340, bj: 195070 },
-  ND:    { ins: "D0303031", name: "ICONIX ANCHOR Needles", spec: "2.3mm", ec: "3910500422", hp: 205340, bj: 195070 },
-  DRILL: { ins: "-", name: "ICONIX 1.4MM DISPOSABLE DRILL", spec: "1.4mm", ec: "3910500568", hp: 0, bj: 0 }
+  C65:   { ins: "D1213031", name: "DRI-LOK Threaded Cannula", spec: "6.5mm", ec: "3910075650", },
+  C80:   { ins: "D1213031", name: "DRI-LOK Threaded Cannula", spec: "8.0mm", ec: "3910075800", },
+  SP:    { ins: "D0303031", name: "ICONIX ANCHOR Speed", spec: "2.3mm", ec: "3910500931", },
+  S3:    { ins: "D0303031", name: "ICONIX ANCHOR 3 Strands", spec: "2.3mm", ec: "3910500532", },
+  S2:    { ins: "D0303031", name: "ICONIX ANCHOR 2 Strands", spec: "2.3mm", ec: "3910500522", },
+  S1:    { ins: "D0303031", name: "ICONIX ANCHOR 1 Strands", spec: "1.4mm", ec: "3910500512", },
+  TT:    { ins: "D0303031", name: "ICONIX ANCHOR 1 TT (XBraid TT)", spec: "1.4mm", ec: "3910500312", },
+  ND:    { ins: "D0303031", name: "ICONIX ANCHOR Needles", spec: "2.3mm", ec: "3910500422", },
+  AFF:   { ins: "D0301831", name: "Alphavent (Force Fiber)", spec: "4.75mm", ec: "3910947032" },
+  DRILL: { ins: "-", name: "ICONIX 1.4MM DISPOSABLE DRILL", spec: "1.4mm", ec: "3910500568", }
 };
 
 window.DELIVERIES = [
+  {
+    id: "2026-11-10-next",
+    date: "2026-11-10",
+    title: "11/10 사용분 · 다음 납품 예정",
+    patients: [
+      { date: "2026-11-10", name: "김O웅", chart: "30230", lines: [["S3", 1], ["SP", 1]] },
+      { date: "2026-11-10", name: "박O자", chart: "29639", lines: [["C65", 1], ["C80", 2], ["S2", 1], ["AFF", 1]] },
+      { date: "2026-11-10", name: "이O한", chart: "29451", lines: [["ND", 1]] }
+    ],
+    extra: []
+  },
   {
     id: "2026-11-04",
     date: "2026-11-04",
