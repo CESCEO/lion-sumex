@@ -38,6 +38,12 @@
   <div class="sub" style="font-weight:700;color:#1f4fd8">납품 확인 페이지</div>
   <div class="sub" id="meta"></div>
 
+  <div class="card" style="background:#f0f5ff;border-color:#c9d8ff">
+    <b>진행 방식</b>
+    <div style="margin-top:6px;font-size:15px">사용분을 올리면 자동으로 <b>거래명세서 생성</b> → <b>이카운트 주문</b> → <b>납품페이지 업데이트</b>가 돼요.</div>
+    <div class="note" style="margin-top:4px">납품 후 담당자(최은성)가 납품완료 버튼을 누르면 상태가 바로 바뀝니다.</div>
+  </div>
+
   <div class="card">
     <div class="status">
       <span id="badge" class="badge pending">납품 대기</span>
@@ -73,7 +79,7 @@
   <div class="note">수멕스 | 담당 최은성 | 이 페이지는 20초마다 자동으로 갱신됩니다.</div>
 </div>
 
-<script src="data.js"></script>
+<script>document.write('<script src="data.js?v='+Date.now()+'"><\/script>');</script>
 <script>
 (function(){
   var API = "https://api.restful-api.dev/objects/";
