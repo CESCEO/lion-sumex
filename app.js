@@ -87,7 +87,7 @@
     } else {
       btn.disabled = false; note.textContent = "누르면 마감 서류가 만들어지고 비엔제이홀딩스로 보내져요.";
     }
-    if (cl) renderDocs(); else { $("docCard").className = "card docs hide"; }
+    if (cl || previewOn) renderDocs(); else { $("docCard").className = "card docs hide"; }
 
     $("dlist").innerHTML = list.length ? "" : '<div class="card note">이 달에는 아직 납품이 없어요.</div>';
     list.slice().reverse().forEach(function (dl) {
@@ -183,6 +183,8 @@
   }
   function setDelivery(id, v, msg, pin) { post({ pin: pin, action: "delivery", id: id, value: v }, msg); }
 
+  var previewOn = false;
+  $("btnPrev").onclick = function () { previewOn = !previewOn; render(); if (previewOn) $("docCard").scrollIntoView({ behavior: "smooth" }); };
   $("btnClose").onclick = function () {
     if (!canClose(cur)) return;
     guard(function (pin) {
