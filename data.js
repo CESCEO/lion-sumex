@@ -1,23 +1,50 @@
+// 청담리온 X 수멕스 납품 데이터 (환자명은 가운데 글자 마스킹)
+window.CONFIG = {
+  store: "ff808181a09d98f701a1c3c7339a7879",
+  pinHash: "9c06b9cae7574dee72c37120bdbc79dcd238dd0de88b03bf1d375f133a29e954",
+  owner: "최은성",
+  ownerTel: "010-7908-3240",
+  bj: { name: "(주)비엔제이홀딩스", mail: "bnjholdings@naver.com" },
+  supplier: "(주)수멕스"
+};
+
+// 병원 거래명세서 품명/규격 그대로, 단가는 VAT 포함
+window.PRODUCTS = {
+  C65:   { ins: "D1213031", name: "DRI-LOK Threaded Cannula", spec: "6.5mm", ec: "3910075650", hp: 45440,  bj: 43160 },
+  C80:   { ins: "D1213031", name: "DRI-LOK Threaded Cannula", spec: "8.0mm", ec: "3910075800", hp: 45440,  bj: 43160 },
+  SP:    { ins: "D0303031", name: "ICONIX ANCHOR Speed", spec: "2.3mm", ec: "3910500931", hp: 205340, bj: 195070 },
+  S3:    { ins: "D0303031", name: "ICONIX ANCHOR 3 Strands", spec: "2.3mm", ec: "3910500532", hp: 205340, bj: 195070 },
+  S2:    { ins: "D0303031", name: "ICONIX ANCHOR 2 Strands", spec: "2.3mm", ec: "3910500522", hp: 205340, bj: 195070 },
+  S1:    { ins: "D0303031", name: "ICONIX ANCHOR 1 Strands", spec: "1.4mm", ec: "3910500512", hp: 205340, bj: 195070 },
+  TT:    { ins: "D0303031", name: "ICONIX ANCHOR 1 TT (XBraid TT)", spec: "1.4mm", ec: "3910500312", hp: 205340, bj: 195070 },
+  ND:    { ins: "D0303031", name: "ICONIX ANCHOR Needles", spec: "2.3mm", ec: "3910500422", hp: 205340, bj: 195070 },
+  DRILL: { ins: "-", name: "ICONIX 1.4MM DISPOSABLE DRILL", spec: "1.4mm", ec: "3910500568", hp: 0, bj: 0 }
+};
+
 window.DELIVERIES = [
+  {
+    id: "2026-11-04",
+    date: "2026-11-04",
+    fixed: { status: "done", by: "최은성", at: "2026-11-04" },
+    patients: [
+      { date: "2026-11-03", name: "김O재", chart: "29945", lines: [["ND", 1]] },
+      { date: "2026-11-03", name: "이O명", chart: "763",   lines: [["ND", 1]] }
+    ],
+    extra: []
+  },
   {
     id: "2026-11-10",
     date: "2026-11-10",
-    to: "청담리온정형외과 간호사",
-    owner: "최은성 (수멕스)",
-    store: "ff808181a09d98f701a1c3c7339a7879",
-    pinHash: "9c06b9cae7574dee72c37120bdbc79dcd238dd0de88b03bf1d375f133a29e954",
-    footnote: "11월 사용분은 5명 거래명세서 기준입니다. 환자별 사용일·차트번호는 아래 열람코드 입력 후에만 보입니다.",
-    enc: {"salt":"vtUT58VpT51iF69IgupMpQ==","iv":"ahZvAArH3ikKhYA+","ct":"ttpPnQqVln8PjubpBBTXSZzRTmYSz3x7y3VsUlvAf7kql/NYGiiZmaTHVB5vHzmBD6A2MYYDBxjTwvjy2NEvsGak+LTzWNw7cJIsJhb0Kya1DNOtIwN5Ku587GVGu+cAsuDRdCJ7vhiTbs50WiatdhE8YNP7GthaQSyCR0smqKsSbrYLs9S8qD/mdIxdSKVIzuzuDt7djCFRyhowEKKlzX7uB5qvU5zuZND2TeHtatuERoJD8yFZuZepb4ce9ib+GqcKljGujc62uA7bbREtmqQ+z4SpVnYm3DddY4oDpxRom3kyu4PchTLZ+/c2B9tu1U2FJkUXJESQtGG4Gz1stcN2Zz+V6wcUCgFCwM4tSsZmuOCPPl0LClowWF5RJxx03zZq7fGYu92EjJVVzhcMeqS6k+dZUR9kHOBxKjWNcqIijwWtMCMjKvKNg+f9GMAnKARl6qWjmvpvJdx4rWYRhsK4Sh/SaWaNBgmq2CxcA3p1uxHHoDMwDl7uokdoXi1d6WbM+IfIgAwEMkEhNrAm649Wrv1hUBmBWEFMKz3jNBDQZgSOHuzu6jh+bcoy4JhYMb4RpPdCI8FE22dLbASqiJubMJVJbjBx0kXxL/0rcAj80kGflIMCSscrdbp94liSHLk77XmoByz1H3hyRQl06VIvhXmRwvhx0McqZoj96FQmwYbvzDA8cIKU4fuqWKx19hpV2AmQMxCaGsY4j6cVK0LCAgUbe9q1k0IzuW9gPK/5wVXwHcqbyEbKy5SdGfhFMtoRWb4mngYeN1bWSqZUuGvIH+sSSiEdKCSLDrKxelmnC2wW5i8zYD0kzuNEQQw80C0zkWVcRDn5Fe0XjoEn5vtDmVYG8cF/Mdw4pJk3rmwU/9KLIwwaWWOjK2UoUN7g+7rItJtaaqz/DEl0wjJJE2oNEegCfnwE"},
-    items: [
-      {code:"3910075650", name:"DRI-LOK Threaded Cannula", spec:"6.5mm x 75mm", kind:"11월 사용분", qty:3, note:""},
-      {code:"3910075800", name:"DRI-LOK Threaded Cannula", spec:"8.0mm x 75mm", kind:"11월 사용분", qty:9, note:""},
-      {code:"3910500931", name:"ICONIX Speed Anchor (SP 2.3mm 3X 1.2mm TT)", spec:"2.3mm", kind:"11월 사용분", qty:4, note:""},
-      {code:"3910500532", name:"ICONIX 3 Anchor", spec:"2.3mm", kind:"11월 사용분", qty:1, note:""},
-      {code:"3910500512", name:"ICONIX 1 Anchor", spec:"1.4mm", kind:"11월 사용분", qty:4, note:""},
-      {code:"3910500512", name:"ICONIX 1 Anchor", spec:"1.4mm", kind:"보충분", qty:1, note:"간호사 요청"},
-      {code:"3910500522", name:"ICONIX 2 Anchor", spec:"2.3mm", kind:"11월 사용분", qty:1, note:""},
-      {code:"3910500312", name:"ICONIX 1 TT w/ IntelliBraid (XBraid TT)", spec:"1.4mm", kind:"11월 사용분", qty:4, note:"랜딩 사용분 채움"},
-      {code:"3910500568", name:"ICONIX 1.4MM DISPOSABLE DRILL", spec:"1.4mm", kind:"샘플", qty:3, note:"샘플"}
+    patients: [
+      { date: "2026-11-03", name: "김O준", chart: "29011", lines: [["C65", 1], ["C80", 2], ["SP", 1]] },
+      { date: "2026-11-04", name: "김O영", chart: "30111", lines: [["C80", 1], ["S3", 1], ["SP", 1]] },
+      { date: "2026-11-04", name: "박O현", chart: "29841", lines: [["C80", 2], ["S1", 2], ["S2", 1]] },
+      { date: "2026-11-04", name: "박O성", chart: "20708", lines: [["C65", 1], ["C80", 2], ["S1", 2]] },
+      { date: "2026-11-06", name: "전O빈", chart: "29851", lines: [["C65", 1], ["C80", 2], ["SP", 2], ["TT", 4]] }
+    ],
+    extra: [
+      { p: "S1", kind: "보충분", qty: 1, note: "간호사 요청" },
+      { p: "DRILL", kind: "샘플", qty: 3, note: "샘플" }
     ]
   }
 ];

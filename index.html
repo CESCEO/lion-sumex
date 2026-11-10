@@ -3,174 +3,126 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
 <title>청담리온 X 수멕스 | 납품 확인</title>
 <style>
-  :root{--bg:#f4f6fa;--card:#fff;--line:#d9dee7;--ink:#1d2433;--sub:#667085;--pri:#1f4fd8;--ok:#0a8f4d;--warn:#b54708}
+  :root{
+    --bg:#fff6f9; --card:#ffffff; --line:#f6d6e2; --ink:#4a3a4f; --sub:#9a8299;
+    --pink:#ff8fb1; --pink2:#ffe3ec; --lav:#b8a4ff; --lav2:#efe9ff; --mint:#5cc9a7; --mint2:#e2f8ef;
+    --peach:#ffb385; --peach2:#fff0e5; --sky:#8ec5ff; --sky2:#e8f3ff;
+  }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;line-height:1.45}
-  .wrap{max-width:860px;margin:0 auto;padding:16px}
-  h1{font-size:22px;margin:8px 0 2px}
-  .sub{color:var(--sub);font-size:14px;margin-bottom:12px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:14px}
-  .status{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-  .badge{display:inline-block;padding:5px 12px;border-radius:999px;font-weight:700;font-size:14px}
-  .pending{background:#fff4e5;color:var(--warn)}
-  .done{background:#e3f7ec;color:var(--ok)}
-  button{font:inherit;border:0;border-radius:10px;padding:12px 18px;font-weight:700;cursor:pointer}
-  .btn-ok{background:var(--pri);color:#fff}
-  .btn-sub{background:#eef1f6;color:var(--ink);font-weight:600}
-  table{width:100%;border-collapse:collapse;font-size:14px}
-  th,td{border-bottom:1px solid var(--line);padding:8px 6px;text-align:left;vertical-align:top}
-  th{background:#eef2fb;font-size:13px}
+  body{margin:0;background:radial-gradient(circle at 10% 0%,#ffe9f1 0,transparent 40%),radial-gradient(circle at 100% 20%,#efe9ff 0,transparent 35%),var(--bg);
+       color:var(--ink);font-family:"Pretendard","Malgun Gothic","Apple SD Gothic Neo",system-ui,sans-serif;line-height:1.5;min-height:100vh}
+  .wrap{max-width:900px;margin:0 auto;padding:18px 16px 40px}
+  header{display:flex;align-items:center;gap:14px;margin:6px 0 14px}
+  .logo{width:52px;height:52px;border-radius:18px;background:linear-gradient(135deg,var(--pink),var(--lav));display:grid;place-items:center;color:#fff;font-weight:800;font-size:20px;box-shadow:0 6px 16px rgba(255,143,177,.35)}
+  h1{font-size:24px;margin:0;letter-spacing:-.3px}
+  h1 .x{color:var(--pink);margin:0 4px}
+  .sub{color:var(--sub);font-size:14px}
+  .card{background:var(--card);border:1.5px solid var(--line);border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:0 4px 14px rgba(240,170,200,.12)}
+  .flow{background:linear-gradient(135deg,var(--lav2),var(--pink2));border-color:#e6d9ff}
+  .steps{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px}
+  .step{background:#fff;border-radius:999px;padding:6px 12px;font-weight:700;font-size:14px;color:#7a5cff;border:1.5px solid #e1d7ff}
+  .arrow{color:var(--pink);font-weight:800}
+  .monthbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .mbtn{border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 16px;font-weight:700;cursor:pointer;font:inherit}
+  .mbtn.on{background:var(--pink);border-color:var(--pink);color:#fff}
+  .badge{display:inline-block;padding:4px 12px;border-radius:999px;font-weight:800;font-size:13px}
+  .pending{background:var(--peach2);color:#e07a3c}
+  .done{background:var(--mint2);color:#219a73}
+  .req{background:var(--lav2);color:#6d4cff}
+  button{font:inherit;border:0;border-radius:14px;padding:11px 18px;font-weight:800;cursor:pointer}
+  .b-pink{background:linear-gradient(135deg,var(--pink),#ff6f9d);color:#fff;box-shadow:0 4px 12px rgba(255,111,157,.3)}
+  .b-lav{background:linear-gradient(135deg,var(--lav),#9b82ff);color:#fff;box-shadow:0 4px 12px rgba(155,130,255,.3)}
+  .b-soft{background:var(--pink2);color:#d1477a}
+  .b-mint{background:var(--mint2);color:#219a73}
+  button:disabled{background:#eee !important;color:#aaa !important;box-shadow:none !important;cursor:not-allowed}
+  .dl{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .dtitle{font-weight:800;font-size:17px}
+  table{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px}
+  th,td{padding:8px 6px;text-align:left;vertical-align:top;border-bottom:1px dashed var(--line)}
+  th{background:var(--pink2);color:#b0466f;font-size:13px}
+  th:first-child{border-radius:10px 0 0 10px} th:last-child{border-radius:0 10px 10px 0}
   td.n,th.n{text-align:center;white-space:nowrap}
-  tfoot td{font-weight:700;border-bottom:0}
-  .tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:6px;background:#eef1f6}
-  .tag.s{background:#fff4e5;color:var(--warn)} .tag.m{background:#e9efff;color:var(--pri)}
+  tfoot td{font-weight:800;border-bottom:0}
+  .tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;font-weight:700}
+  .t-use{background:var(--sky2);color:#3b82d6} .t-sup{background:var(--mint2);color:#219a73} .t-smp{background:var(--peach2);color:#e07a3c}
   .note{font-size:13px;color:var(--sub)}
-  .arch a{display:block;padding:8px 0;border-bottom:1px solid var(--line);color:var(--pri);text-decoration:none}
-  @media print{.noprint{display:none}body{background:#fff}.card{border:0;padding:0}}
+  .sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+  .tile{background:var(--lav2);border-radius:16px;padding:12px}
+  .tile b{display:block;font-size:20px;color:#6d4cff}
+  .tile.p{background:var(--pink2)} .tile.p b{color:#e0457a}
+  .tile.m{background:var(--mint2)} .tile.m b{color:#219a73}
+  input.code{padding:10px 12px;border:1.5px solid var(--line);border-radius:12px;font:inherit;min-width:190px;background:#fffafc}
+  .docs h3{margin:18px 0 4px;font-size:16px;color:#b0466f}
+  .hide{display:none}
+  .foot{color:var(--sub);font-size:12px;text-align:center;margin-top:18px}
+  @media print{.noprint{display:none !important}body{background:#fff}.card{border:0;box-shadow:none;padding:0}}
   @media(max-width:560px){.hide-s{display:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>청담리온 X 수멕스</h1>
-  <div class="sub" style="font-weight:700;color:#1f4fd8">납품 확인 페이지</div>
-  <div class="sub" id="meta"></div>
+  <header>
+    <div class="logo">LS</div>
+    <div>
+      <h1>청담리온<span class="x">X</span>수멕스</h1>
+      <div class="sub">납품 확인 페이지 · 납품 담당자 최은성 (수멕스)</div>
+    </div>
+  </header>
 
-  <div class="card" style="background:#f0f5ff;border-color:#c9d8ff">
+  <div class="card flow noprint">
     <b>진행 방식</b>
-    <div style="margin-top:6px;font-size:15px">사용분을 올리면 자동으로 <b>거래명세서 생성</b> → <b>이카운트 주문</b> → <b>납품페이지 업데이트</b>가 돼요.</div>
-    <div class="note" style="margin-top:4px">납품 후 담당자(최은성)가 납품완료 버튼을 누르면 상태가 바로 바뀝니다.</div>
+    <div style="margin-top:4px">사용분을 올리면 자동으로 거래명세서 생성 → 이카운트 주문 → 납품페이지 업데이트가 돼요.</div>
+    <div class="steps">
+      <span class="step">사용분 업로드</span><span class="arrow">›</span>
+      <span class="step">거래명세서 생성</span><span class="arrow">›</span>
+      <span class="step">이카운트 주문</span><span class="arrow">›</span>
+      <span class="step">납품페이지 업데이트</span><span class="arrow">›</span>
+      <span class="step">납품완료 (최은성)</span><span class="arrow">›</span>
+      <span class="step">월 마감 → 비엔제이홀딩스</span>
+    </div>
+  </div>
+
+  <div class="card noprint">
+    <div class="dl"><b>월별 조회</b><span class="note" id="today"></span></div>
+    <div class="monthbar" id="months" style="margin-top:10px"></div>
   </div>
 
   <div class="card">
-    <div class="status">
-      <span id="badge" class="badge pending">납품 대기</span>
-      <span id="when" class="note"></span>
+    <div class="dl">
+      <div class="dtitle" id="mTitle"></div>
+      <span id="closeBadge" class="badge pending"></span>
     </div>
-    <div class="noprint" style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-      <button id="btnDone" class="btn-ok">납품완료 (최은성 전용)</button>
-      <button id="btnUndo" class="btn-sub" style="display:none">완료 취소 (최은성 전용)</button>
+    <div class="sum" id="tiles"></div>
+    <div class="noprint" style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <button id="btnClose" class="b-lav">마감 요청</button>
+      <span class="note" id="closeNote"></span>
     </div>
-    <div class="note" style="margin-top:8px">납품완료 버튼은 담당자 최은성(수멕스)만 누를 수 있습니다. 간호사 선생님·간납사는 상태만 확인합니다.</div>
   </div>
 
-  <div class="card">
-    <table>
-      <thead><tr><th class="n">No</th><th>품목</th><th class="hide-s">품목코드</th><th class="n">구분</th><th class="n">수량</th><th class="hide-s">비고</th></tr></thead>
-      <tbody id="rows"></tbody>
-      <tfoot><tr><td></td><td colspan="2">합계</td><td></td><td class="n" id="total"></td><td class="hide-s"></td></tr></tfoot>
-    </table>
-    <div class="note" id="foot" style="margin-top:8px"></div>
-  </div>
+  <div id="dlist"></div>
 
-  <div class="card" id="patCard">
-    <b>환자별 사용분 (사용일 · 차트번호)</b>
-    <div class="note" style="margin:6px 0 10px">개인정보 보호를 위해 열람코드를 입력해야 보입니다. 열람코드는 수멕스 최은성에게 받으세요.</div>
-    <div class="noprint" style="display:flex;gap:8px;flex-wrap:wrap">
-      <input id="vcode" type="password" placeholder="열람코드" style="padding:10px;border:1px solid var(--line);border-radius:8px;font:inherit;min-width:180px">
-      <button id="btnView" class="btn-sub">열람</button>
+  <div class="card docs hide" id="docCard">
+    <div class="dl noprint">
+      <b>마감 서류</b>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="b-soft" id="dl1">BJ 납품내역 엑셀</button>
+        <button class="b-soft" id="dl2">거래명세서 엑셀</button>
+        <button class="b-mint" onclick="window.print()">인쇄 / PDF</button>
+      </div>
     </div>
-    <div id="patOut" style="margin-top:12px"></div>
+    <div id="docOut"></div>
   </div>
 
-  <div class="card arch noprint" id="archCard" style="display:none"><b>지난 납품</b><div id="arch"></div></div>
-  <div class="note">수멕스 | 담당 최은성 | 이 페이지는 20초마다 자동으로 갱신됩니다.</div>
+  <div class="foot">수멕스 · 담당 최은성 · 환자명은 가운데 글자를 가려서 표시해요 · 검색에 노출되지 않는 페이지예요 · 20초마다 자동 새로고침</div>
 </div>
-
-<script>document.write('<script src="data.js?v='+Date.now()+'"><\/script>');</script>
 <script>
-(function(){
-  var API = "https://api.restful-api.dev/objects/";
-  var qs = new URLSearchParams(location.search);
-  var list = window.DELIVERIES || [];
-  var cur = list.find(function(d){return d.id===qs.get("d")}) || list[0];
-  if(!cur){document.body.innerHTML="<p>등록된 납품이 없습니다.</p>";return;}
-
-  document.getElementById("meta").textContent = cur.date + " 납품 | 수령: " + cur.to + " | 납품 담당자: " + cur.owner;
-  var tb = document.getElementById("rows"), tot = 0;
-  cur.items.forEach(function(it,i){
-    tot += it.qty;
-    var tr = document.createElement("tr");
-    var cls = it.kind==="샘플"?"s":(it.kind==="보충분"?"m":"");
-    tr.innerHTML = '<td class="n">'+(i+1)+'</td><td>'+it.name+' <span class="note">'+it.spec+'</span></td><td class="hide-s">'+it.code+'</td><td class="n"><span class="tag '+cls+'">'+it.kind+'</span></td><td class="n"><b>'+it.qty+'</b></td><td class="hide-s">'+(it.note||"")+'</td>';
-    tb.appendChild(tr);
-  });
-  document.getElementById("total").textContent = tot;
-  document.getElementById("foot").textContent = cur.footnote || "";
-
-  if(list.length>1){
-    document.getElementById("archCard").style.display="";
-    document.getElementById("arch").innerHTML = list.map(function(d){return '<a href="?d='+d.id+'">'+d.date+' 납품 ('+d.items.reduce(function(a,b){return a+b.qty},0)+'개)</a>'}).join("");
-  }
-
-  function show(s){
-    var done = s && s.status==="done";
-    var b = document.getElementById("badge");
-    b.textContent = done ? "납품 완료" : "납품 대기";
-    b.className = "badge " + (done?"done":"pending");
-    document.getElementById("when").textContent = done ? (s.at + " " + (s.by||"") + " 확인") : "";
-    document.getElementById("btnDone").style.display = done ? "none":"";
-    document.getElementById("btnUndo").style.display = done ? "":"none";
-  }
-  function load(){
-    fetch(API + cur.store).then(function(r){return r.json()}).then(function(j){
-      var d = j.data||{}; localStorage.setItem("lion-"+cur.id, JSON.stringify(d)); show(d);
-    }).catch(function(){
-      try{show(JSON.parse(localStorage.getItem("lion-"+cur.id)||"{}"))}catch(e){show({})}
-    });
-  }
-  function sha(txt){
-    return crypto.subtle.digest("SHA-256", new TextEncoder().encode(txt)).then(function(buf){
-      return Array.from(new Uint8Array(buf)).map(function(x){return x.toString(16).padStart(2,"0")}).join("");
-    });
-  }
-  function nowKst(){
-    var d = new Date(Date.now()+9*3600*1000), p=function(n){return String(n).padStart(2,"0")};
-    return d.getUTCFullYear()+"-"+p(d.getUTCMonth()+1)+"-"+p(d.getUTCDate())+" "+p(d.getUTCHours())+":"+p(d.getUTCMinutes());
-  }
-  function save(data, okMsg){
-    return fetch(API + cur.store, {method:"PUT", headers:{"Content-Type":"application/json"}, body:JSON.stringify({name:"sumex-lion-"+cur.id, data:data})})
-      .then(function(r){ if(!r.ok) throw new Error(r.status); show(data); alert(okMsg); })
-      .catch(function(){ alert("저장하지 못했습니다. 잠시 후 다시 시도해 주세요."); });
-  }
-  function guard(cb){
-    var pin = prompt("최은성 확인 번호를 입력하세요.");
-    if(!pin) return;
-    sha("sumex-lion:"+pin.trim()).then(function(h){
-      if(h!==cur.pinHash){ alert("확인 번호가 맞지 않습니다."); return; }
-      cb();
-    });
-  }
-  document.getElementById("btnDone").onclick = function(){
-    guard(function(){
-      if(confirm("납품 완료로 표시할까요?")) save({status:"done", by:"최은성", at:nowKst()}, "납품 완료로 표시했습니다.");
-    });
-  };
-  document.getElementById("btnUndo").onclick = function(){
-    guard(function(){
-      if(confirm("납품 완료를 취소할까요?")) save({status:"pending", by:"", at:""}, "납품 대기로 되돌렸습니다.");
-    });
-  };
-  function b64d(s){return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0)})}
-  document.getElementById("btnView").onclick=function(){
-    var pw=document.getElementById("vcode").value; var out=document.getElementById("patOut");
-    if(!pw||!cur.enc){out.textContent="열람코드를 입력하세요.";return;}
-    var te=new TextEncoder();
-    crypto.subtle.importKey("raw",te.encode(pw),"PBKDF2",false,["deriveKey"]).then(function(km){
-      return crypto.subtle.deriveKey({name:"PBKDF2",salt:b64d(cur.enc.salt),iterations:250000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);
-    }).then(function(key){
-      return crypto.subtle.decrypt({name:"AES-GCM",iv:b64d(cur.enc.iv)},key,b64d(cur.enc.ct));
-    }).then(function(buf){
-      var arr=JSON.parse(new TextDecoder().decode(buf));
-      var h='<table><thead><tr><th>사용일</th><th>환자명</th><th>차트번호</th><th>사용 품목</th></tr></thead><tbody>';
-      arr.forEach(function(p){h+='<tr><td class="n">'+p.date+'</td><td>'+p.name+'</td><td>'+p.chart+'</td><td>'+p.items.map(function(i){return i[0]+' x'+i[1]}).join(', ')+'</td></tr>';});
-      out.innerHTML=h+'</tbody></table>';
-    }).catch(function(){out.textContent="열람코드가 맞지 않습니다.";});
-  };
-  load(); setInterval(load, 20000);
-})();
+  var V = Date.now();
+  document.write('<script src="data.js?v=' + V + '"><\/script><script src="app.js?v=' + V + '"><\/script>');
 </script>
 </body>
 </html>
