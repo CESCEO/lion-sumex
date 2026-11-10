@@ -29,7 +29,7 @@ window.DELIVERIES = [
     patients: [
       { date: "2026-11-10", name: "김O웅", chart: "30230", lines: [["S3", 1], ["SP", 1]] },
       { date: "2026-11-10", name: "박O자", chart: "29639", lines: [["C65", 1], ["C80", 2], ["S2", 1], ["AFF", 1]] },
-      { date: "2026-11-10", name: "이O한", chart: "29451", lines: [["ND", 1]] }
+      { date: "2026-11-10", name: "이O화", chart: "29451", lines: [["ND", 1]] }
     ],
     extra: []
   },
