@@ -1,7 +1,6 @@
 // 청담리온 X 수멕스 납품 데이터 (환자명은 가운데 글자 마스킹)
 window.CONFIG = {
-  store: "ff808181a09d98f701a1c3c7339a7879",
-  pinHash: "9c06b9cae7574dee72c37120bdbc79dcd238dd0de88b03bf1d375f133a29e954",
+  api: "https://script.google.com/macros/s/AKfycbytxuRVtFAS7JspLvc92OJrqfpf-GbUcYNq1qDmUTGnaXqt78DXo8qr94zTmbyjXwCE/exec",
   owner: "최은성",
   ownerTel: "010-7908-3240",
   bj: { name: "(주)비엔제이홀딩스", mail: "bnjholdings@naver.com" },

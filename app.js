@@ -1,6 +1,6 @@
 (function () {
   var C = window.CONFIG, P = window.PRODUCTS, D = window.DELIVERIES || [];
-  var API = "https://api.restful-api.dev/objects/" + C.store;
+  var API = C.api;
   var state = { deliveries: {}, closings: {} };
   var $ = function (id) { return document.getElementById(id); };
   var won = function (n) { return (n || 0).toLocaleString("ko-KR"); };
@@ -120,10 +120,10 @@
       $("dlist").appendChild(card);
     });
     Array.prototype.forEach.call(document.querySelectorAll("[data-done]"), function (b) {
-      b.onclick = function () { guard(function () { if (confirm("납품 완료로 표시할까요?")) setDelivery(b.getAttribute("data-done"), { status: "done", by: C.owner, at: kstStamp() }, "납품 완료로 표시했어요."); }); };
+      b.onclick = function () { if (!confirm("납품 완료로 표시할까요?")) return; guard(function (pin) { setDelivery(b.getAttribute("data-done"), { status: "done", by: C.owner, at: kstStamp() }, "납품 완료로 표시했어요.", pin); }); };
     });
     Array.prototype.forEach.call(document.querySelectorAll("[data-undo]"), function (b) {
-      b.onclick = function () { guard(function () { if (confirm("납품 완료를 취소할까요?")) setDelivery(b.getAttribute("data-undo"), { status: "pending" }, "납품 대기로 되돌렸어요."); }); };
+      b.onclick = function () { if (!confirm("납품 완료를 취소할까요?")) return; guard(function (pin) { setDelivery(b.getAttribute("data-undo"), { status: "pending" }, "납품 대기로 되돌렸어요.", pin); }); };
     });
   }
 
@@ -160,36 +160,39 @@
     a.download = name + ".xls"; document.body.appendChild(a); a.click(); a.remove();
   }
 
-  function sha(t) { return crypto.subtle.digest("SHA-256", new TextEncoder().encode(t)).then(function (b) { return Array.from(new Uint8Array(b)).map(function (x) { return x.toString(16).padStart(2, "0"); }).join(""); }); }
   function guard(cb) {
     var pin = prompt(C.owner + " 확인 번호를 입력하세요.");
     if (!pin) return;
-    sha("sumex-lion:" + pin.trim()).then(function (h) { if (h !== C.pinHash) { alert("확인 번호가 맞지 않아요."); return; } cb(); });
+    cb(pin.trim());
   }
+  function apply(d) { d = d || {}; state.deliveries = d.deliveries || {}; state.closings = d.closings || {}; }
   function load(cb) {
     return fetch(API, { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (j) {
-      var d = (j && j.data) || {};
-      state.deliveries = d.deliveries || {}; state.closings = d.closings || {};
+      if (j && j.ok) apply(j.data);
       if (cb) cb();
     }).catch(function () { if (cb) cb(); });
   }
-  function save(msg) {
-    return fetch(API, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ name: "sumex-lion", data: state }) })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); render(); alert(msg); })
+  function post(body, msg) {
+    return fetch(API, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!j.ok) { alert(j.error === "pin" ? "확인 번호가 맞지 않아요." : "저장하지 못했어요."); return; }
+        apply(j.data); render(); alert(msg);
+      })
       .catch(function () { alert("저장하지 못했어요. 잠시 후 다시 시도해 주세요."); });
   }
-  function setDelivery(id, v, msg) { load(function () { state.deliveries[id] = v; save(msg); }); }
+  function setDelivery(id, v, msg, pin) { post({ pin: pin, action: "delivery", id: id, value: v }, msg); }
 
   $("btnClose").onclick = function () {
     if (!canClose(cur)) return;
-    guard(function () {
+    guard(function (pin) {
       var pend = D.filter(function (d) { return monthOf(d) === cur && statusOf(d).status !== "done"; }).length;
       var msg = kLabel(cur) + " 마감을 요청할까요?" + (pend ? "\n(아직 납품 대기 " + pend + "건이 있어요)" : "");
       if (!confirm(msg)) return;
-      load(function () { state.closings[cur] = { status: "requested", at: kstStamp(), by: C.owner }; save("마감 요청이 접수됐어요. 마감 서류가 만들어졌어요."); });
+      post({ pin: pin, action: "close", month: cur, value: { status: "requested", at: kstStamp(), by: C.owner } }, "마감 요청이 접수됐어요. 마감 서류가 만들어졌어요.");
     });
   };
 
   load(render);
-  setInterval(function () { load(render); }, 20000);
+  setInterval(function () { if (!document.hidden) load(render); }, 30000);
 })();
