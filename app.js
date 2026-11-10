@@ -95,7 +95,7 @@
       var tr = items.map(function (it, i) {
         tot += it.qty;
         var pr = P[it.p];
-        var cls = it.kind === "샘플" ? "t-smp" : it.kind === "보충분" ? "t-sup" : "t-use";
+        var cls = (it.kind === "샘플" || it.kind === "교환") ? "t-smp" : (it.kind === "보충분" || it.kind === "가납랜딩") ? "t-sup" : "t-use";
         return '<tr><td class="n">' + (i + 1) + "</td><td>" + pr.name + ' <span class="note">' + pr.spec + '</span></td><td class="hide-s">' + pr.ec +
           '</td><td class="n"><span class="tag ' + cls + '">' + it.kind + '</span></td><td class="n"><b>' + it.qty + '</b></td><td class="hide-s note">' + it.who.join(", ") + "</td></tr>";
       }).join("");
