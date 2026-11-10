@@ -89,7 +89,7 @@
     if (cl || previewOn) renderDocs(); else { $("docCard").className = "card docs hide"; }
 
     $("dlist").innerHTML = list.length ? "" : '<div class="card note">이 달에는 아직 납품이 없어요.</div>';
-    list.slice().reverse().forEach(function (dl) {
+    list.slice().sort(function (a, b) { return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; }).forEach(function (dl) {
       var st = statusOf(dl), done = st.status === "done";
       var items = itemsOf(dl), tot = 0;
       var tr = items.map(function (it, i) {
@@ -100,7 +100,7 @@
           '</td><td class="n"><span class="tag ' + cls + '">' + it.kind + '</span></td><td class="n"><b>' + it.qty + '</b></td><td class="hide-s note">' + it.who.join(", ") + "</td></tr>";
       }).join("");
       var pt = dl.patients.map(function (p) {
-        return '<tr><td class="n">' + p.date.slice(5).replace("-", "/") + "</td><td>" + p.name + '</td><td class="n">' + p.chart + "</td><td>" +
+        return '<tr><td class="n">' + p.date.slice(5).replace("-", "/") + '</td><td class="n">' + p.name + '</td><td class="n">' + p.chart + "</td><td>" +
           p.lines.map(function (l) { return P[l[0]].name + " " + P[l[0]].spec + " x" + l[1]; }).join(", ") + "</td></tr>";
       }).join("");
       var card = document.createElement("div");
