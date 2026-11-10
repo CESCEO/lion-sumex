@@ -59,6 +59,16 @@
     <div class="note" id="foot" style="margin-top:8px"></div>
   </div>
 
+  <div class="card" id="patCard">
+    <b>환자별 사용분 (사용일 · 차트번호)</b>
+    <div class="note" style="margin:6px 0 10px">개인정보 보호를 위해 열람코드를 입력해야 보입니다. 열람코드는 수멕스 최은성에게 받으세요.</div>
+    <div class="noprint" style="display:flex;gap:8px;flex-wrap:wrap">
+      <input id="vcode" type="password" placeholder="열람코드" style="padding:10px;border:1px solid var(--line);border-radius:8px;font:inherit;min-width:180px">
+      <button id="btnView" class="btn-sub">열람</button>
+    </div>
+    <div id="patOut" style="margin-top:12px"></div>
+  </div>
+
   <div class="card arch noprint" id="archCard" style="display:none"><b>지난 납품</b><div id="arch"></div></div>
   <div class="note">수멕스 | 담당 최은성 | 이 페이지는 20초마다 자동으로 갱신됩니다.</div>
 </div>
@@ -136,6 +146,22 @@
     guard(function(){
       if(confirm("납품 완료를 취소할까요?")) save({status:"pending", by:"", at:""}, "납품 대기로 되돌렸습니다.");
     });
+  };
+  function b64d(s){return Uint8Array.from(atob(s),function(c){return c.charCodeAt(0)})}
+  document.getElementById("btnView").onclick=function(){
+    var pw=document.getElementById("vcode").value; var out=document.getElementById("patOut");
+    if(!pw||!cur.enc){out.textContent="열람코드를 입력하세요.";return;}
+    var te=new TextEncoder();
+    crypto.subtle.importKey("raw",te.encode(pw),"PBKDF2",false,["deriveKey"]).then(function(km){
+      return crypto.subtle.deriveKey({name:"PBKDF2",salt:b64d(cur.enc.salt),iterations:250000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,["decrypt"]);
+    }).then(function(key){
+      return crypto.subtle.decrypt({name:"AES-GCM",iv:b64d(cur.enc.iv)},key,b64d(cur.enc.ct));
+    }).then(function(buf){
+      var arr=JSON.parse(new TextDecoder().decode(buf));
+      var h='<table><thead><tr><th>사용일</th><th>환자명</th><th>차트번호</th><th>사용 품목</th></tr></thead><tbody>';
+      arr.forEach(function(p){h+='<tr><td class="n">'+p.date+'</td><td>'+p.name+'</td><td>'+p.chart+'</td><td>'+p.items.map(function(i){return i[0]+' x'+i[1]}).join(', ')+'</td></tr>';});
+      out.innerHTML=h+'</tbody></table>';
+    }).catch(function(){out.textContent="열람코드가 맞지 않습니다.";});
   };
   load(); setInterval(load, 20000);
 })();
