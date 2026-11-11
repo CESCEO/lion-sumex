@@ -1,6 +1,10 @@
 (function () {
   var C = window.CONFIG, P = window.PRODUCTS, D = window.DELIVERIES || [];
   var API = C.api;
+  var SHORT = { C65: "캐뉼라 6.5", C80: "캐뉼라 8.0", SP: "Speed", S3: "3 Strands", S2: "2 Strands", S1: "1 Strands", ND: "Needles", AFF: "Alphavent", TT: "XBraid TT" };
+  function chip(code, q) { return '<span class="pc pc-' + code + '">' + (SHORT[code] || P[code].name) + (q != null ? ' <b>' + q + "</b>" : "") + "</span>"; }
+  function legend() { return '<div class="legend">' + Object.keys(SHORT).filter(function (k) { return P[k]; }).map(function (k) { return chip(k); }).join("") + "</div>"; }
+
   var state = { deliveries: {}, closings: {} };
   var $ = function (id) { return document.getElementById(id); };
   var won = function (n) { return (n || 0).toLocaleString("ko-KR"); };
@@ -96,12 +100,12 @@
         tot += it.qty;
         var pr = P[it.p];
         var cls = (it.kind === "샘플" || it.kind === "교환") ? "t-smp" : (it.kind === "보충분" || it.kind === "가납랜딩") ? "t-sup" : "t-use";
-        return '<tr><td class="n">' + (i + 1) + "</td><td>" + pr.name + ' <span class="note">' + pr.spec + '</span></td><td class="hide-s">' + pr.ec +
+        return '<tr><td class="n">' + (i + 1) + '</td><td><span class="dot dot-' + it.p + '"></span>' + pr.name + ' <span class="note">' + pr.spec + '</span></td><td class="hide-s">' + pr.ec +
           '</td><td class="n"><span class="tag ' + cls + '">' + it.kind + '</span></td><td class="n"><b>' + it.qty + '</b></td><td class="hide-s note">' + it.who.join(", ") + "</td></tr>";
       }).join("");
       var pt = dl.patients.map(function (p) {
-        return '<tr><td class="n">' + p.date.slice(5).replace("-", "/") + '</td><td class="n">' + p.name + '</td><td class="n">' + p.chart + "</td><td>" +
-          p.lines.map(function (l) { return P[l[0]].name + " " + P[l[0]].spec + " x" + l[1]; }).join(", ") + "</td></tr>";
+        return '<tr><td class="n">' + p.date.slice(5).replace("-", "/") + '</td><td><span class="pt-name">' + p.name + '</span><br><span class="pt-chart">' + p.chart + "</span></td><td><div class=\"pl\">" +
+          p.lines.map(function (l) { return chip(l[0], l[1]); }).join("") + "</div></td></tr>";
       }).join("");
       var card = document.createElement("div");
       card.className = "card";
@@ -114,8 +118,8 @@
         "</div></div>" +
         '<table><thead><tr><th class="n">No</th><th>품목</th><th class="hide-s">품목코드</th><th class="n">구분</th><th class="n">수량</th><th class="hide-s">비고</th></tr></thead><tbody>' + tr +
         '</tbody><tfoot><tr><td></td><td colspan="2">합계</td><td></td><td class="n">' + tot + '</td><td class="hide-s"></td></tr></tfoot></table>' +
-        '<div style="margin-top:12px;font-weight:800;color:#b0466f">환자별 사용분</div>' +
-        '<table><thead><tr><th class="n">사용일</th><th>환자</th><th class="n">차트번호</th><th>사용 품목</th></tr></thead><tbody>' + pt + "</tbody></table>";
+        '<div style="margin-top:12px;font-weight:800;color:#b0466f">환자별 사용분</div>' + legend() +
+        '<table><thead><tr><th class="n">사용일</th><th>환자 · 차트</th><th>사용 품목 (색상=제품, 숫자=수량)</th></tr></thead><tbody>' + pt + "</tbody></table>";
       $("dlist").appendChild(card);
     });
     Array.prototype.forEach.call(document.querySelectorAll("[data-done]"), function (b) {
