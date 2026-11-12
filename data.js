@@ -18,10 +18,21 @@ window.PRODUCTS = {
   TT:    { ins: "D0303031", name: "ICONIX ANCHOR 1 TT (XBraid TT)", spec: "1.4mm", ec: "3910500312", },
   ND:    { ins: "D0303031", name: "ICONIX ANCHOR Needles", spec: "2.3mm", ec: "3910500422", },
   AFF:   { ins: "D0301831", name: "Alphavent (Force Fiber)", spec: "4.75mm", ec: "3910947032" },
+  ATT:   { ins: "D0301831", name: "Alphavent (Tape Type)", spec: "4.75mm", ec: "3910947031" },
   DRILL: { ins: "-", name: "ICONIX 1.4MM DISPOSABLE DRILL", spec: "1.4mm", ec: "3910500568", }
 };
 
 window.DELIVERIES = [
+  {
+    id: "2026-11-12",
+    date: "2026-11-12",
+    title: "11/12 사용분 · 납품 예정",
+    patients: [
+      { date: "2026-11-12", name: "장O준", chart: "29494", lines: [["C80", 2], ["S1", 4], ["SP", 2]] },
+      { date: "2026-11-12", name: "이O직", chart: "29864", lines: [["C65", 1], ["C80", 2], ["ATT", 1], ["AFF", 1], ["SP", 1]] }
+    ],
+    extra: []
+  },
   {
     id: "2026-11-11",
     date: "2026-11-11",
