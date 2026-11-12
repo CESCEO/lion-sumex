@@ -24,9 +24,9 @@ window.PRODUCTS = {
 
 window.DELIVERIES = [
   {
-    id: "2026-11-12",
-    date: "2026-11-12",
-    title: "11/12 사용분 · 납품 예정",
+    id: "2026-11-17",
+    date: "2026-11-17",
+    title: "11/17(화) 납품 예정",
     patients: [
       { date: "2026-11-12", name: "장O준", chart: "29494", lines: [["C80", 2], ["S1", 4], ["SP", 2]] },
       { date: "2026-11-12", name: "이O직", chart: "29864", lines: [["C65", 1], ["C80", 2], ["ATT", 1], ["AFF", 1], ["SP", 1]] }
