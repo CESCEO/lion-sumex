@@ -25,7 +25,7 @@
       pt.lines.forEach(function (l) {
         var k = l[0] + "|사용분";
         if (!map[k]) { map[k] = { p: l[0], kind: "사용분", qty: 0, who: [] }; order.push(k); }
-        map[k].qty += l[1]; map[k].who.push(pt.name + " " + l[1]);
+        map[k].qty += l[1]; map[k].who.push(pt.name + " " + l[1] + (l[2] ? " (" + l[2] + ")" : ""));
       });
     });
     var out = order.map(function (k) { return map[k]; });
