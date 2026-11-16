@@ -25,14 +25,21 @@ window.PRODUCTS = {
 window.DELIVERIES = [
   {
     id: "2026-11-17",
-    date: "2026-11-17",
-    title: "11/17(화) 납품 예정",
+    date: "2026-11-16",
+    title: "11/16(월) 납품 예정 (11/10·11/11 미출고 보충 포함)",
     patients: [
       { date: "2026-11-12", name: "장O준", chart: "29494", lines: [["C80", 2], ["S1", 4], ["SP", 2]] },
       { date: "2026-11-12", name: "이O직", chart: "29864", lines: [["C65", 1], ["C80", 2], ["ATT", 1], ["AFF", 1], ["SP", 1]] },
       { date: "2026-11-13", name: "신O훈", chart: "18542", lines: [["C65", 1], ["C80", 2], ["ATT", 1], ["AFF", 1]] }
     ],
-    extra: []
+    extra: [
+      { p: "ND", kind: "보충분", qty: 1, note: "11/10 이O화 미출고분" },
+      { p: "SP", kind: "보충분", qty: 2, note: "11/10 강O훈 미출고분" },
+      { p: "C80", kind: "보충분", qty: 2, note: "11/10 강O훈 미출고분" },
+      { p: "S1", kind: "보충분", qty: 5, note: "11/10 강O훈 미출고분" },
+      { p: "S1", kind: "보충분", qty: 2, note: "11/11 전O민 (알파벤트 #2가 잘못 들어감)" },
+      { p: "AFF", kind: "회수", qty: 2, note: "11/11 전O민 ICONIX 1 대신 잘못 들어간 알파벤트 #2 회수" }
+    ]
   },
   {
     id: "2026-11-11",
