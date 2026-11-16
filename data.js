@@ -29,7 +29,8 @@ window.DELIVERIES = [
     title: "11/17(화) 납품 예정",
     patients: [
       { date: "2026-11-12", name: "장O준", chart: "29494", lines: [["C80", 2], ["S1", 4], ["SP", 2]] },
-      { date: "2026-11-12", name: "이O직", chart: "29864", lines: [["C65", 1], ["C80", 2], ["ATT", 1], ["AFF", 1], ["SP", 1]] }
+      { date: "2026-11-12", name: "이O직", chart: "29864", lines: [["C65", 1], ["C80", 2], ["ATT", 1], ["AFF", 1], ["SP", 1]] },
+      { date: "2026-11-13", name: "신O훈", chart: "18542", lines: [["C65", 1], ["C80", 2], ["ATT", 1], ["AFF", 1]] }
     ],
     extra: []
   },
