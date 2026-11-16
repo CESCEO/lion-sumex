@@ -24,6 +24,15 @@ window.PRODUCTS = {
 
 window.DELIVERIES = [
   {
+    id: "next-iconix-1111",
+    date: "2026-11-17",
+    title: "다음 납품 시 보충 예정 (11/11 전O민분)",
+    patients: [],
+    extra: [
+      { p: "S1", kind: "보충분", qty: 2, note: "11/11 전O민 ICONIX 1 1.4mm 2개 (알파벤트 회수 대체, 다음 납품 때 전달)" }
+    ]
+  },
+  {
     id: "2026-11-17",
     date: "2026-11-16",
     title: "11/16(월) 납품 예정 (11/10·11/11 미출고 보충 포함)",
@@ -37,8 +46,7 @@ window.DELIVERIES = [
       { p: "SP", kind: "보충분", qty: 2, note: "11/10 강O훈 미출고분" },
       { p: "C80", kind: "보충분", qty: 2, note: "11/10 강O훈 미출고분" },
       { p: "S1", kind: "보충분", qty: 5, note: "11/10 강O훈 미출고분" },
-      { p: "S1", kind: "보충분", qty: 2, note: "11/11 전O민 (알파벤트 #2가 잘못 들어감)" },
-      { p: "AFF", kind: "회수", qty: 2, note: "11/11 전O민 ICONIX 1 대신 잘못 들어간 알파벤트 #2 회수" }
+      { p: "AFF", kind: "회수", qty: 2, note: "11/11 전O민 ICONIX 1 대신 잘못 들어간 알파벤트 #2 회수 (11/16 회수 완료)" }
     ]
   },
   {
