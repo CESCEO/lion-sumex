@@ -19,6 +19,9 @@ window.PRODUCTS = {
   ND:    { ins: "D0303031", name: "ICONIX ANCHOR Needles", spec: "2.3mm", ec: "3910500422", },
   AFF:   { ins: "D0301831", name: "Alphavent (Force Fiber)", spec: "4.75mm", ec: "3910947032" },
   ATT:   { ins: "D0301831", name: "Alphavent (Tape Type)", spec: "4.75mm", ec: "3910947031" },
+  BLM:   { ins: "-", name: "Precision Thin 소골 톱날 MEDIUM", spec: "9.0x0.38x18.5mm", ec: "2296003105" },
+  BLL:   { ins: "-", name: "Precision Thin 소골 톱날 LONG MEDIUM", spec: "9.0x0.38x31.0mm", ec: "2296003125" },
+  TPS:   { ins: "-", name: "TPS Footswitch (발판)", spec: "-", ec: "5100008000" },
   DRILL: { ins: "-", name: "ICONIX 1.4MM DISPOSABLE DRILL", spec: "1.4mm", ec: "3910500568", }
 };
 
@@ -32,7 +35,11 @@ window.DELIVERIES = [
       { date: "2026-11-20", name: "이O신", chart: "30253", lines: [["S3", 1], ["ATT", 1]] },
       { date: "2026-11-24", name: "박O순", chart: "29860", lines: [["C65", 1], ["C80", 2], ["AFF", 1]] }
     ],
-    extra: []
+    extra: [
+      { p: "BLM", kind: "샘플", qty: 1, note: "샘플 (마감 제외)" },
+      { p: "BLL", kind: "샘플", qty: 1, note: "샘플 (마감 제외)" },
+      { p: "TPS", kind: "샘플", qty: 1, note: "샘플 (마감 제외)" }
+    ]
   },
   {
     id: "2026-11-19",
